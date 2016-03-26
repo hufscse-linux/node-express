@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+    <head>
+        <title>html pages</title>
+    </head>
+    <body>
+        <p>result</p>
+        <div id="result">
+        </div>
+        <p>
+            <span>1</span>
+            <span>1</span>
+            <span>1</span>
+            <span>1</span>
+        </p>
+        <p>2</p>
+        <div id="gray-div">
+            <div>
+                <p>this sentences</p>
+            </div>
+            <div>
+                <p>this sentences2</p>
+            </div>
+        </div>
+        <!-- div id="gray-div">4</div -->
+
+        <div class="gray-div">4</div>
+        <div class="gray-div">4</div>
+
+        <h1>Title</h1>
+
+        <ul>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ul>
+
+        <ol>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ol>
+
+        <ol>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ol>
+        
+        <a href="https://google.com">google</a>
+        <br />
+        
+        <strong>strong</strong>
+        <br />
+        <i>itelic</i>
+        <br />
+
+        <script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+         $(function() {
+             /*
+             var xhr = new XMLHttpRequest();
+             xhr.onreadystatechange = function() {
+                 if(xhr.readyState == 4) {
+                     if(xhr.status == 200) {
+                         $("#result").text(xhr.responseText);
+                     } else if(xhr.status == 404) {
+                         $("#result").text(xhr.responseText);
+                     }
+                 }
+             }
+             xhr.open("GET", "/test", true);
+             xhr.send();
+              */
+             /*
+             $.ajax("/test", {
+                 success: function(data, textStatus, xhr) {
+                     console.log(data);
+                     var result = $("#result");
+                     result.append($("<p>" + data.key + "</p>").css("background-color", "red"));
+                     result.append($("<p>" + data.value + "</p>").css("background-color", "blue"));
+                 },
+                 error: function(xhr, textStatus, err) {
+                     alert("fail");
+                 }
+             });
+             */
+             var request = $.ajax("/test");
+             request.done(function(data, textStatus, xhr) {
+                 console.log(data);
+                 var result = $("#result");
+                 result.append($("<p>" + data.key + "</p>").css("background-color", "red"));
+                 result.append($("<p>" + data.value + "</p>").css("background-color", "blue"));
+             });
+             request.fail(function(xhr, textStatus, err) {
+                 alert("fail");
+             });
+         });
+        </script>
+    </body>
+</html>
