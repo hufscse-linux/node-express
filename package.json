@@ -18,7 +18,12 @@
     "grunt-mkdir": "^1.0.0",
     "grunt-parallel": "^0.4.1",
     "grunt-shell": "^1.2.1",
-    "grunt-shell-spawn": "^0.3.10"
+    "grunt-shell-spawn": "^0.3.10",
+    "gulp": "^3.9.1",
+    "gulp-bg": "0.0.8",
+    "gulp-express": "^0.3.5",
+    "gulp-live-server": "0.0.29",
+    "mkdirp": "^0.5.1"
   },
   "dependencies": {
     "express": "^4.13.4",
