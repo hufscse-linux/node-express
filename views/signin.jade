@@ -1,0 +1,15 @@
+html
+  head
+    title Signin
+  body
+    form(name='userinfo', method="post", action="/signin")
+      if errorMessage
+        p(style="background: red")= errorMessage
+      p
+        label(for="username") Username
+        input(type="text", name="username")
+      p
+        label(for="password") Password
+        input(type="password", name="password")
+      p
+        input(type="submit", value="Sign In")

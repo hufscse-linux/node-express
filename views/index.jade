@@ -1,18 +1,12 @@
 html
   head
-    title= title
+    title Main
   body
-    h1= message
-    div
-      p line
-      p= line
-    ul
-      each item in array
-        li= item
-    p -------------------------------------------------
-    ul
-      each item in data
-        li
-          p= item.title
-          div= item.body
-          
+    if username
+      p
+        span= username
+        span
+          a(href="/signout") Sign Out
+    else
+      p
+        a(href="/signin") Sign In
