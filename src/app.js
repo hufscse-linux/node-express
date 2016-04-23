@@ -8,6 +8,12 @@ var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var RedisStore = require("connect-redis")(session);
 
+//mongoose.connect("mongodb://localhost/test");
+var mongodb_production = process.env.MONGODB_URI;
+var redis_production = process.env.REDISCLOUD_URL;
+
+mongoose.connect(mongodb_production);
+
 var router = express.Router();
 
 var app = express();
@@ -19,15 +25,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(
     session({
-        store: new RedisStore(),
+        store: new RedisStore({url: redis_production}),
         secret: 's3cret',
         resave: false,
         saveUninitialized: true,
         cookie: { maxAge: 30000 }
     })
 );
-
-mongoose.connect("mongodb://localhost/test");
 
 var root_controller = require("./controllers/root_controller");
 var signin_controller = require("./controllers/signin_controller");
