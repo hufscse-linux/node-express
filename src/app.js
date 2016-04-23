@@ -12,6 +12,8 @@ var RedisStore = require("connect-redis")(session);
 var mongodb_production = process.env.MONGODB_URI;
 var redis_production = process.env.REDISCLOUD_URL;
 
+var http_port = process.env.PORT;
+
 mongoose.connect(mongodb_production);
 
 var router = express.Router();
@@ -44,6 +46,5 @@ router.get('/signout', signout_controller);
 
 app.use("/", router);
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
-});
+app.listen(http_port);
+//app.listen(3000, function () { console.log('Example app listening on port 3000!'); });
