@@ -15,7 +15,12 @@ gulp.task(
     'default',
     ['run-local-mongodb', "run-local-redis"],
     function() {
-        var server = gls.new('src/app.js');
+        var server = gls('src/app.js', {env : {     
+            MONGODB_URI : "mongodb://localhost/test",
+            REDISCLOUD_URI : "redis://localhost " , 
+            PORT : 3000
+        }
+        });
         server.start();
 
         gulp.watch('src/app.js', function() {
