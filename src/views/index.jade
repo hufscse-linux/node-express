@@ -4,7 +4,7 @@ html
   body
     if username
       p
-        span= username
+        span(id="username")= username
         span
           a(href="/signout") Sign Out
     else

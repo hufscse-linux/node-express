@@ -1,39 +1,40 @@
 {
-    "name": "node-express",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "node src/app.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "grunt": "^0.4.5",
-        "grunt-bg-shell": "^2.3.3",
-        "grunt-contrib-uglify": "^1.0.1",
-        "grunt-contrib-watch": "^1.0.0",
-        "grunt-express-server": "^0.5.2",
-        "grunt-jslint": "^1.1.14",
-        "grunt-mkdir": "^1.0.0",
-        "grunt-parallel": "^0.4.1",
-        "grunt-shell": "^1.2.1",
-        "grunt-shell-spawn": "^0.3.10",
-        "gulp": "^3.9.1",
-        "gulp-bg": "0.0.8",
-        "gulp-express": "^0.3.5",
-        "gulp-live-server": "0.0.29",
-        "mkdirp": "^0.5.1"
-    },
-    "dependencies": {
-        "body-parser": "^1.15.0",
-        "connect-redis": "^3.0.2",
-        "cookie-parser": "^1.4.1",
-        "express": "^4.13.4",
-        "express-session": "^1.13.0",
-        "jade": "^1.11.0",
-        "mongoose": "^4.4.12",
-        "redis": "^2.5.3"
-    }
+  "name": "node-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-bg-shell": "^2.3.3",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-express-server": "^0.5.2",
+    "grunt-jslint": "^1.1.14",
+    "grunt-mkdir": "^1.0.0",
+    "grunt-parallel": "^0.4.1",
+    "grunt-shell": "^1.2.1",
+    "grunt-shell-spawn": "^0.3.10",
+    "gulp": "^3.9.1",
+    "gulp-bg": "0.0.8",
+    "gulp-express": "^0.3.5",
+    "gulp-live-server": "0.0.29",
+    "gulp-phantom": "0.0.6",
+    "mkdirp": "^0.5.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "connect-redis": "^3.0.2",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "jade": "^1.11.0",
+    "mongoose": "^4.4.12",
+    "redis": "^2.5.3"
+  }
 }
