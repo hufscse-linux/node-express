@@ -24,7 +24,7 @@ gulp.task(
                 }
             }
         );
-        server.start();
+        setTimeout(function() { server.start(); }, 1000);
 
         gulp.watch('src/app.js', function() {
             server.start.bind(server);
