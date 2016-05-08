@@ -39,11 +39,14 @@ app.use(
 var root_controller = require("./controllers/root_controller");
 var signin_controller = require("./controllers/signin_controller");
 var signout_controller = require("./controllers/signout_controller");
+var signup_controller = require("./controllers/signup_controller");
 
 router.get('/', root_controller);
 router.get('/signin', signin_controller.page);
 router.post('/signin', signin_controller.action);
 router.get('/signout', signout_controller);
+router.get('/signup', signup_controller.page);
+router.post('/signup', signup_controller.action);
 
 app.use("/", router);
 
