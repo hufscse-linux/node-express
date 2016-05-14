@@ -6,8 +6,9 @@ node_js:
 
 services:
   - mongodb
+  - redis-server
 
 before_script:
-  - npm install -g phantomjs
+  - npm install -g phantomjs gulp
 
-script: phantomjs ./integration_test/*
+script: gulp integration_test

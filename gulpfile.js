@@ -31,10 +31,11 @@ gulp.task(
         });
     });
 
-gulp.task('integration_test', function() {
+gulp.task('integration_test', ['default'], function() {
     gulp.src("./integration_test/*.js")
         .pipe(phantom({
             ext: ".json"
         }))
-        .pipe(gulp.dest("./tmp/data"));
+        .pipe(gulp.dest("./tmp/data"))
+        .on("error", function() { this.emit("end"); });
 });
