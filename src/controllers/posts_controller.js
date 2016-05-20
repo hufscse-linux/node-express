@@ -25,10 +25,20 @@ var action = function(req, res){
 }
 
 var postsPage = function(req, res) {
-    
+   // var allOfPosts = new Post();
+    Post.find({}, function(err, docs){
+        if (err){
+            console.log(err)
+        }
+        res.render('post', {
+            docs : docs
+        })
+    })
+
 }
 
 module.exports = {
     newPostPage : newPostPage,
-    action : action
+    action : action,
+    postsPage : postsPage
 }

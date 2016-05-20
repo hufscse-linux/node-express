@@ -50,6 +50,7 @@ router.get('/signup', signup_controller.page);
 router.post('/signup', signup_controller.action);
 router.get('/post/new', posts_controller.newPostPage);
 router.post('/post/new', posts_controller.action);
+router.get('/post', posts_controller.postsPage);
 
 app.use("/", router);
 
