@@ -1,14 +1,27 @@
-var mongoose = require('mongoose')
+var express = require('express');
+var mongoose = require('mongoose');
+
+var router = express.Router();
+
 var Post = require("../models/post").Post;
 
+router.get('/new', function(req, res) {
+    res.render('posts/new', {});
+});
 
-var newPostPage = function(req, res) {
-    res.render('newPost', {});
-};
+router.get('/', function(req, res) {
+    // var allOfPosts = new Post();
+    Post.find({}, function(err, docs){
+        if (err){
+            console.log(err)
+        }
+        res.render('posts/index', {
+            docs : docs
+        })
+    });
+});
 
-//TODO
-//if save success redirects /posts
-var action = function(req, res){
+router.post('/', function(req, res){
     var newPostInfo = req.body;
     var newPost = new Post();
     newPost.title = newPostInfo.title;
@@ -19,26 +32,35 @@ var action = function(req, res){
             console.log(err);
         }
         console.log(newPost);
-        res.redirect('/')
-        
+        res.redirect('posts/' + newPost._id);
     });
-}
+});
 
-var postsPage = function(req, res) {
-   // var allOfPosts = new Post();
-    Post.find({}, function(err, docs){
-        if (err){
-            console.log(err)
-        }
-        res.render('post', {
-            docs : docs
-        })
-    })
+router.get("/:id", function(req, res) {
+    Post.findById(req.params.id, function(err, post) {
+        if(err) { return; }
+        res.render('posts/show',{post: post});
+    });    
+});
 
-}
+router.get("/:id/edit", function(req, res) {
+    Post.findById(req.params.id, function(err, post) {
+        res.render('posts/edit',{post: post});
+    });
+});
 
-module.exports = {
-    newPostPage : newPostPage,
-    action : action,
-    postsPage : postsPage
-}
+router.post("/:id/edit", function(req, res) {
+    console.log(req.body);
+    Post.findOneAndUpdate(
+        {_id: req.params.id},
+        {title: req.body.title, body: req.body.body},
+        function(err) {
+            if(err) {
+                console.log("!");
+                return;
+            }
+            res.redirect('/posts/' + req.params.id);
+        });
+});
+
+module.exports = router;

@@ -40,7 +40,9 @@ var root_controller = require("./controllers/root_controller");
 var signin_controller = require("./controllers/signin_controller");
 var signout_controller = require("./controllers/signout_controller");
 var signup_controller = require("./controllers/signup_controller");
-var posts_controller = require("./controllers/posts_controller");
+
+var users_controller = require('./controllers/users_controller');
+var posts_controller = require('./controllers/posts_controller');
 
 router.get('/', root_controller);
 router.get('/signin', signin_controller.page);
@@ -48,10 +50,9 @@ router.post('/signin', signin_controller.action);
 router.get('/signout', signout_controller);
 router.get('/signup', signup_controller.page);
 router.post('/signup', signup_controller.action);
-router.get('/post/new', posts_controller.newPostPage);
-router.post('/post/new', posts_controller.action);
-router.get('/post', posts_controller.postsPage);
 
-app.use("/", router);
+app.use('/', router);
+app.use('/users', users_controller);
+app.use('/posts', posts_controller);
 
 app.listen(http_port);
