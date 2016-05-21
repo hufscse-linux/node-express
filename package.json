@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
     "grunt": "^0.4.5",
     "grunt-bg-shell": "^2.3.3",
     "grunt-contrib-uglify": "^1.0.1",

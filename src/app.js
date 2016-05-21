@@ -56,3 +56,6 @@ app.use('/users', users_controller);
 app.use('/posts', posts_controller);
 
 app.listen(http_port);
+
+
+module.exports = app;
