@@ -3,7 +3,7 @@ html
         title Post
         script(type='text/javascript', src='https://code.jquery.com/jquery-2.2.3.min.js',integrity='sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=', crossorigin='anonymous')
     body
-        form(name='postinfo', method = 'post', action = "/post/new")
+        form(name='postinfo', method = 'post', action = "/post")
             if errorMessage
                 p(style="background: red") = errorMessage
             p
