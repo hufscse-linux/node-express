@@ -28,7 +28,7 @@ function routes(app) {
 }
 
 module.exports = function(app_env) {
-    var config = require("./config");
+    var config = require("../config");
     var app = bootstrap(config);
 
     var current_env = config.get_environment(app_env) || config.current_environments();

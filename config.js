@@ -5,12 +5,12 @@ var environments = {
         HTTP_PORT: 3000
     },
     testing: {
-        MONGODB_URI: "mongodb://localhost/test",
+        MONGODB_URI: "mongodb://localhost/testing",
         REDIS_URI: "redis://localhost/",
         HTTP_PORT: 3000
     },
     production: {
-        MONGODB_URI: "mongodb://localhost/test",
+        MONGODB_URI: "mongodb://localhost/production",
         REDIS_URI: "redis://localhost/",
         HTTP_PORT: 3000
     }

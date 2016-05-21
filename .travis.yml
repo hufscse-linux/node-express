@@ -12,6 +12,6 @@ before_script:
   - npm install -g gulp
 
 env:
-  - APP_ENV=test
+  - APP_ENV=testing
   
 script: gulp test
