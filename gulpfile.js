@@ -36,7 +36,7 @@ gulp.task('mocha', function() {
 });
 
 gulp.task('test', ['run-local-mongodb', 'run-local-redis', 'mocha']);
-gulp.task('travis', ['mocha']);
+gulp.task('travis-ci', ['mocha']);
 
 gulp.task('integration_test', ['default'], function() {
     return gulp.src("./integration_test/*.js")

@@ -14,4 +14,4 @@ before_script:
 env:
   - APP_ENV=testing
   
-script: gulp test
+script: gulp travis-ci
