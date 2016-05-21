@@ -9,6 +9,6 @@ services:
   - redis-server
 
 before_script:
-  - npm install -g phantomjs gulp
+  - npm install -g gulp
 
-script: gulp integration_test
+script: gulp test

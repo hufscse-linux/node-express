@@ -2,6 +2,7 @@ var gulp    = require('gulp'),
     gls     = require('gulp-live-server'),
     bg      = require('gulp-bg'),
     mkdirp  = require('mkdirp'),
+    mocha   = require('gulp-mocha'),
     phantom = require('gulp-phantom');
 
 gulp.task('mkdir-local-mongodb', function() { mkdirp('tmp/mongo-data'); });
@@ -14,16 +15,7 @@ gulp.task(
     'default',
     ['run-local-mongodb', "run-local-redis"],
     function() {
-        var server = gls(
-            'src/app.js',
-            {
-                env: {
-                    MONGODB_URI: "mongodb://localhost/test",
-                    REDISCLOUD_URL: "redis://localhost/",
-                    PORT: 3000
-                }
-            }
-        );
+        var server = gls('src/instance.js');
         setTimeout(function() { server.start(); }, 1000);
 
         gulp.watch('src/app.js', function() {
@@ -31,8 +23,19 @@ gulp.task(
         });
     });
 
+gulp.task('test', ['default'], function() {
+    return gulp.src('./test/*.js')
+        .pipe(mocha())
+        .once('error', function() {
+            process.exit(1);
+        })
+        .once('end', function() {
+            process.exit();
+        });
+});
+
 gulp.task('integration_test', ['default'], function() {
-    gulp.src("./integration_test/*.js")
+    return gulp.src("./integration_test/*.js")
         .pipe(phantom({
             ext: ".json"
         }))

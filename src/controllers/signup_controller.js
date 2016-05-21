@@ -1,3 +1,6 @@
+var express = require('express'),
+    router = express.Router();
+
 var mongoose = require('mongoose');
 var User = require("../models/user").User;
 
@@ -32,7 +35,12 @@ var action = function(req, res){
         }
     });
 };
-module.exports = {
-    page: page,
-    action: action
+
+
+
+module.exports = function(app) {
+    router.get('/signup', page);
+    router.post('/signup', action);
+
+    app.use('/', router);
 };
