@@ -11,4 +11,7 @@ services:
 before_script:
   - npm install -g gulp
 
+env:
+  - APP_ENV=test
+  
 script: gulp test
