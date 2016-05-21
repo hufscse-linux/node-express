@@ -54,3 +54,6 @@ app.use('/post', postRouter)
 
 
 app.listen(http_port);
+
+
+module.exports = app;
