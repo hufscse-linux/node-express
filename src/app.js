@@ -40,18 +40,17 @@ var root_controller = require("./controllers/root_controller");
 var signin_controller = require("./controllers/signin_controller");
 var signout_controller = require("./controllers/signout_controller");
 var signup_controller = require("./controllers/signup_controller");
-var posts_controller = require("./controllers/posts_controller");
+var signinRouter = require("./controllers/signin_controller");
+var postRouter = require("./controllers/posts_controller");
 
 router.get('/', root_controller);
-router.get('/signin', signin_controller.page);
-router.post('/signin', signin_controller.action);
 router.get('/signout', signout_controller);
 router.get('/signup', signup_controller.page);
 router.post('/signup', signup_controller.action);
-router.get('/post/new', posts_controller.newPostPage);
-router.post('/post', posts_controller.action);
-router.get('/post', posts_controller.postsPage);
 
 app.use("/", router);
+app.use("/signin", signinRouter )
+app.use('/post', postRouter)
+
 
 app.listen(http_port);

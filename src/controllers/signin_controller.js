@@ -1,9 +1,12 @@
 var mongoose = require('mongoose');
 var User = require("../models/user").User;
+var express = require('express')
+var router = express.Router();
 
 var page = function(req, res) {
     res.render('signin', {});
 };
+router.get('/', page);
 
 var action = function(req, res) {
     var ui = req.body;
@@ -24,8 +27,6 @@ var action = function(req, res) {
         }
     });
 };
+router.post('/', action);
 
-module.exports = {
-    page: page,
-    action: action
-};
+module.exports = router;
