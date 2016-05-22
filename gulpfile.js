@@ -15,8 +15,7 @@ gulp.task(
     'run-local-mongodb',
     ['mkdir-local-mongodb'],
     bg("mongod",
-       "--dbpath=" + __dirname + "/tmp/mongo-data",
-       "--quiet"
+       "--dbpath=" + __dirname + "/tmp/mongo-data"
       )
 );
 

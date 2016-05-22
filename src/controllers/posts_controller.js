@@ -5,10 +5,6 @@ var router = express.Router();
 
 var Post = require("../models/post").Post;
 
-router.get('/new', function(req, res) {
-    res.render('posts/new', {});
-});
-
 router.get('/', function(req, res) {
     // var allOfPosts = new Post();
     Post.find({}, function(err, docs){
@@ -21,7 +17,11 @@ router.get('/', function(req, res) {
     });
 });
 
-router.post('/', function(req, res){
+router.get('/new', function(req, res) {
+    res.render('posts/new', {});
+});
+
+router.post('/new', function(req, res){
     var newPostInfo = req.body;
     var newPost = new Post();
     newPost.title = newPostInfo.title;
@@ -31,7 +31,6 @@ router.post('/', function(req, res){
         if(err){
             console.log(err);
         }
-        console.log(newPost);
         res.redirect('posts/' + newPost._id);
     });
 });
@@ -50,7 +49,6 @@ router.get("/:id/edit", function(req, res) {
 });
 
 router.post("/:id/edit", function(req, res) {
-    console.log(req.body);
     Post.findOneAndUpdate(
         {_id: req.params.id},
         {title: req.body.title, body: req.body.body},
