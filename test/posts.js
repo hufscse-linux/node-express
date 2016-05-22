@@ -1,8 +1,9 @@
 var request = require('supertest');
 
-var app = require('../src/app.js')('test');
+var app = require('../src/app.js')('testing');
 
 describe('Post Controllers', function() {
+
     it('should list All posts on GET /posts', function(done) {
         request(app)
             .get('/posts')
