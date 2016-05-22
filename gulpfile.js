@@ -8,8 +8,14 @@ var config  = require('./config'),
     mkdirp  = require('mkdirp');
 
 gulp.task('mkdir-local-mongodb', function() { mkdirp('tmp/mongo-data'); });
-gulp.task('run-local-mongodb', ['mkdir-local-mongodb'],
-          bg("mongod", "--dbpath=" + __dirname + "/tmp/mongo-data"));
+
+gulp.task('run-local-mongodb',
+          ['mkdir-local-mongodb'],
+          bg("mongod",
+             "--dbpath=" + __dirname + "/tmp/mongo-data",
+             "--quiet"
+            )
+         );
 gulp.task('run-local-redis', bg("redis-server"));
 
 gulp.task(
