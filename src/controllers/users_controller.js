@@ -3,8 +3,10 @@ var mongoose = require('mongoose');
 
 var router = express.Router();
 
-router.get('/', function(req, res) {
-    res.render('post');
-});
+module.exports = function(app) {
+    router.get('/', function(req, res) {
+        res.render('post');
+    });
 
-module.exports = router;
+    app.use("/users", router);
+};

@@ -1,61 +1,55 @@
-'use strict';
-
-var mongoose = require('mongoose');
 var express  = require('express');
-var path     = require("path");
+var fs = require("fs");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
+
+var mongoose = require('mongoose');
+
 var session = require("express-session");
 var RedisStore = require("connect-redis")(session);
 
-//mongoose.connect("mongodb://localhost/test");
-var mongodb_production = process.env.MONGODB_URI;
-var redis_production = process.env.REDISCLOUD_URL;
-console.log(process.env.MONGODB_URI)
+function bootstrap(config) {
+    var app = express();    
+    app.set('views', __dirname + "/" + config.express.views);
+    app.set('view engine', config.express.view_engine);
+    
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(cookieParser());
 
-var http_port = process.env.PORT;
+    return app;
+}
 
-mongoose.connect(mongodb_production);
+function routes(app) {
+    var controllers_dir = __dirname + '/controllers';
+    fs.readdirSync(controllers_dir).forEach(function(file) {
+        var controllers = require(controllers_dir + '/' + file);
+        controllers(app);
+    });
+}
 
-var router = express.Router();
+module.exports = function(app_env) {
+    var config = require("../config");
+    var app = bootstrap(config);
 
-var app = express();
+    var current_env = config.get_environment(app_env) || config.current_environments();
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+    // database connection
+    mongoose.connect(current_env.MONGODB_URI);
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(cookieParser());
-app.use(
-    session({
-        store: new RedisStore({url: redis_production}),
-        secret: 's3cret',
-        resave: false,
-        saveUninitialized: true,
-        cookie: { maxAge: 30000 }
-    })
-);
-
-var root_controller = require("./controllers/root_controller");
-var signin_controller = require("./controllers/signin_controller");
-var signout_controller = require("./controllers/signout_controller");
-var signup_controller = require("./controllers/signup_controller");
-
-var users_controller = require('./controllers/users_controller');
-var posts_controller = require('./controllers/posts_controller');
-
-router.get('/', root_controller);
-router.get('/signin', signin_controller.page);
-router.post('/signin', signin_controller.action);
-router.get('/signout', signout_controller);
-router.get('/signup', signup_controller.page);
-router.post('/signup', signup_controller.action);
-
-app.use('/', router);
-app.use('/users', users_controller);
-app.use('/posts', posts_controller);
-
-app.listen(http_port);
+    // session configuration
+    app.use(
+        session({
+            store: new RedisStore({url: current_env.REDIS_URI}),
+            secret: 's3cret',
+            resave: false,
+            saveUninitialized: true,
+            cookie: { maxAge: 30000 }
+        })
+    );
 
 
-module.exports = app;
+    routes(app);
+    
+    app.listen(current_env.HTTP_PORT);
+    return app;
+};

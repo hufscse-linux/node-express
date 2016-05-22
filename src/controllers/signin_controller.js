@@ -1,5 +1,10 @@
+var express = require('express'),
+    router = express.Router();
+
 var mongoose = require('mongoose');
 var User = require("../models/user").User;
+var express = require('express')
+var router = express.Router();
 
 var page = function(req, res) {
     res.render('signin', {});
@@ -25,7 +30,10 @@ var action = function(req, res) {
     });
 };
 
-module.exports = {
-    page: page,
-    action: action
+
+module.exports = function(app) {
+    router.get('/', page);
+    router.post('/', action);
+
+    app.use('/signin', router);
 };

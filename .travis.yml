@@ -9,6 +9,9 @@ services:
   - redis-server
 
 before_script:
-  - npm install -g phantomjs gulp
+  - npm install -g gulp
 
-script: gulp integration_test
+env:
+  - APP_ENV=testing
+  
+script: gulp travis-ci
