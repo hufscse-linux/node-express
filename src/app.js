@@ -10,7 +10,7 @@ var RedisStore = require("connect-redis")(session);
 
 function bootstrap(config) {
     var app = express();    
-    app.set('views', config.express.views);
+    app.set('views', __dirname + "/" + config.express.views);
     app.set('view engine', config.express.view_engine);
     
     app.use(bodyParser.urlencoded({extended: true}));

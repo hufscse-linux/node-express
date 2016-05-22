@@ -17,7 +17,7 @@ var environments = {
 };
 
 var express = {
-    views: __dirname + '/views',
+    views: 'views',
     view_engine: 'jade'
 };
 
